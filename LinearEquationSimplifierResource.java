@@ -17,18 +17,18 @@ class LinearEquationSimplifierResource {
         return null;
     }
 
-    public static String simplify(String equation, boolean oneUnitCoefficient) {
+    public static String simplify(String equation, boolean unitConstant) {
 
         equation = equation.replaceAll("\\s+", "");
 
         equation = constantToVariable(equation);
-        String simplifiedEquation = variableToConstant(homogeneousSimplify(equation, oneUnitCoefficient));
+        String simplifiedEquation = variableToConstant(homogeneousSimplify(equation, unitConstant));
 
         if(!simplifiedEquation.equals("")) return simplifiedEquation;
         return null;
     }
 
-    private static String homogeneousSimplify(String equation, boolean oneUnitCoefficient) {
+    private static String homogeneousSimplify(String equation, boolean unitConstant) {
 
         String lhs = equation.substring(0, equation.indexOf('='));
         String rhs = equation.substring(equation.indexOf('=') + 1);
@@ -50,8 +50,8 @@ class LinearEquationSimplifierResource {
                 hMap.put(variable, hMap.get(variable) - coefficient);
             }
         }
-        if(oneUnitCoefficient)
-            hMap = oneUnitCoefficient(hMap);
+        if(unitConstant)
+            hMap = unitConstant(hMap);
 
         String simplifiedEquation = "";
         for(Map.Entry<Character, Double> entry : hMap.entrySet()) {
@@ -153,7 +153,7 @@ class LinearEquationSimplifierResource {
         return newEquation;
     }
 
-    private static HashMap<Character, Double> oneUnitCoefficient(HashMap<Character, Double> hMap) {
+    private static HashMap<Character, Double> unitConstant(HashMap<Character, Double> hMap) {
         boolean foundFactor = false;
         double factor = 1;
         for(Map.Entry<Character, Double> entry : hMap.entrySet()) {
