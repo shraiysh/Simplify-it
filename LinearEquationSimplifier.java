@@ -8,8 +8,9 @@ public class LinearEquationSimplifier {
         System.out.println("Example : 0.5x + 3y = 2.5x +3z + 2y -56 + 54-2   =>  + 4.0 - 2.0x + 1.0y - 3.0z = 0\n");
         String equation = new String(consoleInput.readLine());
 
-        String newEquation = LinearEquationSimplifierResource.simplify(equation);
-
-        System.out.println("\nSimplified Equation : " + newEquation);
+        String newEquationSimple = LinearEquationSimplifierResource.simplify(equation); // same as LinearEquationSimplifierResource.simplify(equation, false);
+        String newEquationForcedOneUnitCoefficient = LinearEquationSimplifierResource.simplify(equation, true);
+        System.out.println("\nSimplified Equation : " + newEquationSimple);
+        System.out.println("\nSimplified Equation with unit constant : " + newEquationForcedOneUnitCoefficient + "\n");
     }
 }

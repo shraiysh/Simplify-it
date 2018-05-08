@@ -11,13 +11,24 @@ class LinearEquationSimplifierResource {
         equation = equation.replaceAll("\\s+", "");
 
         equation = constantToVariable(equation);
-        String simplifiedEquation = variableToConstant(homogeneousSimplify(equation));
+        String simplifiedEquation = variableToConstant(homogeneousSimplify(equation, false));
 
         if(!simplifiedEquation.equals("")) return simplifiedEquation;
         return null;
     }
 
-    private static String homogeneousSimplify(String equation) {
+    public static String simplify(String equation, boolean oneUnitCoefficient) {
+
+        equation = equation.replaceAll("\\s+", "");
+
+        equation = constantToVariable(equation);
+        String simplifiedEquation = variableToConstant(homogeneousSimplify(equation, oneUnitCoefficient));
+
+        if(!simplifiedEquation.equals("")) return simplifiedEquation;
+        return null;
+    }
+
+    private static String homogeneousSimplify(String equation, boolean oneUnitCoefficient) {
 
         String lhs = equation.substring(0, equation.indexOf('='));
         String rhs = equation.substring(equation.indexOf('=') + 1);
@@ -39,6 +50,9 @@ class LinearEquationSimplifierResource {
                 hMap.put(variable, hMap.get(variable) - coefficient);
             }
         }
+        if(oneUnitCoefficient)
+            hMap = oneUnitCoefficient(hMap);
+
         String simplifiedEquation = "";
         for(Map.Entry<Character, Double> entry : hMap.entrySet()) {
             char variable = entry.getKey();
@@ -137,5 +151,18 @@ class LinearEquationSimplifierResource {
             }
         }
         return newEquation;
+    }
+
+    private static HashMap<Character, Double> oneUnitCoefficient(HashMap<Character, Double> hMap) {
+        boolean foundFactor = false;
+        double factor = 1;
+        for(Map.Entry<Character, Double> entry : hMap.entrySet()) {
+            if(!foundFactor)  {
+                factor = entry.getValue();
+                foundFactor = true;
+            }
+            hMap.put(entry.getKey(), entry.getValue()/factor);
+        }
+        return hMap;
     }
 }
