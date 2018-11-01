@@ -1,4 +1,4 @@
-## How to run
+# How to run
 
 Open terminal, and make sure java is installed in your system.
 Check that by running`java --version`
@@ -11,7 +11,7 @@ Run the following commands.
 The resources are int the file `LinearEquationSimplifierResource.java`
 
 
-# linearEquationSimplifier
+# Simplify-it
 
 The equation simplifier groups all the terms with same variables and gives a simplified linear equation.
 A resource file is also provided for general utilities such as HashMap of variables with their coefficients.
