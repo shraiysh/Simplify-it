@@ -1,9 +1,25 @@
+## How to run
+
+Open terminal, and make sure java is installed in your system.
+Check that by running`java --version`
+Run the following commands.
+* `git clone https://github.com/shraiysh/Simplify-it.git`
+* `cd Simplify-it`
+* `javac LinearEquationSimplifier.java`
+* `java LinearEquationSimplifier`
+
+The resources are int the file `LinearEquationSimplifierResource.java`
+
+
 # linearEquationSimplifier
 
 The equation simplifier groups all the terms with same variables and gives a simplified linear equation.
-It does not give the coefficients in their lowest form.
+A resource file is also provided for general utilities such as HashMap of variables with their coefficients.
 
 # Examples
+
+Here output#1 does not alter the coefficients, and output#2 is with constant=1
+
 
 |                Input                |           Output#1                 |               Output#2         |
 |:-----------------------------------:|:----------------------------------:|:------------------------------:|
