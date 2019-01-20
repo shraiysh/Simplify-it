@@ -7,13 +7,8 @@ class LinearEquationSimplifierResource {
     private static char variableForConstant = '$';
 
     public static String simplify(String equation) {
-
-        equation = equation.replaceAll("\\s+", "");
-
-        equation = constantToVariable(equation);
-        String simplifiedEquation = variableToConstant(homogeneousSimplify(equation, false));
-
-        if(!simplifiedEquation.equals("")) return simplifiedEquation;
+    	String simplifiedEquation = simplify(equation, false);
+    	if(!simplifiedEquation.equals("")) return simplifiedEquation;
         return null;
     }
 
